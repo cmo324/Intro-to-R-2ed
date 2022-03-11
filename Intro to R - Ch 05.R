@@ -38,7 +38,7 @@ y <- as.integer(y)
 class(y)
 typeof(y)
 
-
+cat("hi")
 
 # How to programmatically clear console
 cat("\014") 

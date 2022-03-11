@@ -2,11 +2,17 @@
 if (!require("data.table")) install.packages("data.table")
 library("data.table")
 
+
+Yellow_Sample <- read_csv("yellow_tripdata_2021-07.csv")
+Yellow_Sample
+
 header <- read.table("yellow_tripdata_2017-06.csv", header = TRUE,
                      sep=",", nrow = 1)
 DF <- fread("yellow_tripdata_2017-06.csv", skip=1, sep=",",
             header=FALSE, data.table=FALSE)
+
 setnames(DF, colnames(header))
+
 # Save the "bad" observations so we can clean them out
 # in the next chapter
 DF2<-DF[which(DF$total_amount<=0 |
@@ -33,4 +39,12 @@ Yellow_Sample <- DF[index,]
 Yellow_Sample <- rbind(DF2,Yellow_Sample)
 
 # Save the data frame as csv
-fwrite(Yellow_Sample,"Yellow_Sample.csv")
+fwrite(Yellow_Sample,"yellow_tripdata_2021-07.csv")
+
+mean(Yellow_Sample$trip_distance)
+#mean of trip_distance : 7.786647
+mean(Yellow_Sample$total_amount)
+#mean of total amount: 19.87764
+
+##The code for the DF wasn't working as it said the object 'DF' didn't exist within the code. 
+#If the proper edits were made to the data frame given the 'DF' function, then I would find the means using lines 44-47 of code.  
